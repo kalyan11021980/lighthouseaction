@@ -1,12 +1,59 @@
-name: Lighthouse
-on: push
+# name: Lighthouse
+# on: push
+# jobs:
+#   lighthouse:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#       - name: Install dependencies
+#         run: npm install
+#       - name: Build project
+#         run: npm run build
+#       - name: Run Lighthouse
+#         uses: treosh/lighthouse-ci-action@v10
+#         with:
+#           urls: 'http://localhost:3000' # Replace with your app's URL
+#           numberOfRuns: 3 # Number of times to run Lighthouse
+#           outputPath: './lighthouse-results' # Output directory for Lighthouse report
+
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  static-dist-dir:
+  build_and_test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Run Lighthouse against a static dist dir
-        uses: treosh/lighthouse-ci-action@v10
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          # no urls needed, since it uses local folder to scan .html files
-          configPath: "./lighthouserc.json"
+          node-version: "17"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
+
+      # Start a local server
+      - name: Serve the app
+        run: npm run start &
+
+      - name: Sleep for 10 seconds to allow http-server to start
+        run: sleep 10
+
+      # Run Lighthouse against the local server
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v7
+        with:
+          urls:
+            - "http://localhost:3000"
+            temporaryPublicStorage: true
