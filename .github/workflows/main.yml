@@ -31,5 +31,5 @@ jobs:
         uses: treosh/lighthouse-ci-action@v7
         with:
           urls: "http://localhost:3000"
-          configPath: "./lighthouse.json"
+          configPath: "./lighthouserc.json"
           temporaryPublicStorage: true
