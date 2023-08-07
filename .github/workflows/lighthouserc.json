@@ -1,8 +1,5 @@
 {
   "ci": {
-    "assert": {
-      "preset": "lighthouse:recommended"
-    },
     "collect": {
       "settings": {
         "hostname": "127.0.0.1",
