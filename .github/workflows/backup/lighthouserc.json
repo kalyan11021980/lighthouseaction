@@ -1,0 +1,11 @@
+{
+  "ci": {
+    "collect": {
+      "settings": {
+        "hostname": "127.0.0.1",
+        "chromeFlags": ["--disable-gpu", "--no-sandbox", "--no-zygote"]
+      },
+      "numberOfRuns": 3
+    }
+  }
+}

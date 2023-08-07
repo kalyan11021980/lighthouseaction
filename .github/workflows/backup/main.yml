@@ -1,0 +1,35 @@
+name: Lighthouse CI
+on: push
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "17"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
+
+      # Start a local server
+      - name: Serve the app
+        run: npm run start &
+
+      # - name: Check App
+      #   run: curl http://localhost:3000
+
+      # # Run Lighthouse against the local server
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: "http://localhost:3000"
+          configPath: ".github/workflows/lighthouserc.json"
+          temporaryPublicStorage: true
