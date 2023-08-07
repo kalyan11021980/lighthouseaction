@@ -28,7 +28,7 @@ jobs:
 
       # # Run Lighthouse against the local server
       - name: Run Lighthouse
-        uses: treosh/lighthouse-ci-action@v7
+        uses: treosh/lighthouse-ci-action@v10
         with:
           urls: "http://localhost:3000"
           configPath: ".github/workflows/lighthouserc.json"
