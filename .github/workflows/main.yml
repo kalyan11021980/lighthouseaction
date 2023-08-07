@@ -1,24 +1,4 @@
-# name: Lighthouse
-# on: push
-# jobs:
-#   lighthouse:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-#       - name: Install dependencies
-#         run: npm install
-#       - name: Build project
-#         run: npm run build
-#       - name: Run Lighthouse
-#         uses: treosh/lighthouse-ci-action@v10
-#         with:
-#           urls: 'http://localhost:3000' # Replace with your app's URL
-#           numberOfRuns: 3 # Number of times to run Lighthouse
-#           outputPath: './lighthouse-results' # Output directory for Lighthouse report
-
-name: Build and Test
-
+name: Lighthouse CI
 on:
   push:
     branches:
@@ -54,6 +34,5 @@ jobs:
       - name: Run Lighthouse
         uses: treosh/lighthouse-ci-action@v7
         with:
-          urls:
-            - "http://localhost:3000"
-            temporaryPublicStorage: true
+          urls: "http://localhost:3000"
+          temporaryPublicStorage: true
