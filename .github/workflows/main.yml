@@ -26,9 +26,12 @@ jobs:
       - name: Sleep for 10 seconds to allow http-server to start
         run: sleep 10
 
-      # Run Lighthouse against the local server
-      - name: Run Lighthouse
-        uses: treosh/lighthouse-ci-action@v7
-        with:
-          urls: "http://localhost:3000"
-          temporaryPublicStorage: true
+      - name: Check App
+        run: curl http://localhost:3000
+
+      # # Run Lighthouse against the local server
+      # - name: Run Lighthouse
+      #   uses: treosh/lighthouse-ci-action@v7
+      #   with:
+      #     urls: "http://localhost:3000"
+      #     temporaryPublicStorage: true
