@@ -23,9 +23,6 @@ jobs:
       - name: Serve the app
         run: npm run start &
 
-      - name: Sleep for 10 seconds to allow http-server to start
-        run: sleep 10
-
       # - name: Check App
       #   run: curl http://localhost:3000
 
@@ -34,5 +31,5 @@ jobs:
         uses: treosh/lighthouse-ci-action@v7
         with:
           urls: "http://localhost:3000"
-          config-path: "./lighthouse.json"
+          configPath: "./lighthouse.json"
           temporaryPublicStorage: true
