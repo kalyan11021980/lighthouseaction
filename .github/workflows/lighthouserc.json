@@ -1,7 +1,11 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./dist"
+      "settings": {
+        "chromeFlags": "--no-sandbox",
+        "hostname": "127.0.0.1"
+      },
+      "numberOfRuns": 3
     }
   }
 }
